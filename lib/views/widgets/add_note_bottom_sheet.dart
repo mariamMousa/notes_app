@@ -63,6 +63,12 @@ class _MyWidgetState extends State<AddNoteForm> {
           ),
           CustomButton(
             onTap: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+                setState(() {});
+              }
               // Assuming you have access to your AddNoteCubit instance
               final addNoteCubit = context.read<AddNoteCubit>();
               // Create a NoteModel (you can get the title and subTitle from your form fields)
@@ -74,17 +80,9 @@ class _MyWidgetState extends State<AddNoteForm> {
 
               // Call the addNote function
               addNoteCubit.addNote(note);
+              Navigator.pop(context);
             },
           ),
-          //   onTap: () {
-          //     if (formKey.currentState!.validate()) {
-          //       formKey.currentState!.save();
-          //     } else {
-          //       autovalidateMode = AutovalidateMode.always;
-          //       setState(() {});
-          //     }
-          //   },
-          // ),
           const SizedBox(
             height: 16,
           )
