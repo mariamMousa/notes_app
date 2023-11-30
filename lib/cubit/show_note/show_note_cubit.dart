@@ -13,7 +13,8 @@ class ShowNoteCubit extends Cubit<ShowNoteState> {
   Future showNote() async {
     try {
       var notesBox = Hive.box(kNotesBox);
-      emit(ShowNoteSuccess());
+      emit(ShowNoteLoding());
+
       final List<NoteModel> notes =
           notesBox.values.whereType<NoteModel>().toList();
       final List<String> noteTitles = notes.map((note) => note.title).toList();
@@ -21,14 +22,13 @@ class ShowNoteCubit extends Cubit<ShowNoteState> {
           notes.map((note) => note.subTitle).toList();
       final List<String> noteDate = notes.map((note) => note.date).toList();
       final List<int> noteColor = notes.map((note) => note.color).toList();
+      emit(ShowNoteSuccess(notes));
       print('Note Titles: $noteTitles');
       print('Note Contents: $noteContents');
       print('Note Data: $noteDate');
       print('Note Color: $noteColor');
-
-      print(notes);
-      emit(ShowNoteLoding());
       print("ammount is ${notesBox.length}");
+      // return notes;
     } catch (e) {
       ShowNoteFailer(e.toString());
     }

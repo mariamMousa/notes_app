@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/cubit/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/cubit/show_note/show_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/views/notes_view.dart';
 import 'package:notes_app/views/widgets/custom_button.dart';
 import 'package:notes_app/views/widgets/custom_text_field.dart';
+import 'package:notes_app/views/widgets/notes_list_view.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
@@ -65,6 +68,7 @@ class _MyWidgetState extends State<AddNoteForm> {
             onTap: () {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                setState(() {});
               } else {
                 autovalidateMode = AutovalidateMode.always;
                 setState(() {});
@@ -79,8 +83,14 @@ class _MyWidgetState extends State<AddNoteForm> {
                   color: 0xff62FCD7);
 
               // Call the addNote function
-              addNoteCubit.addNote(note);
-              Navigator.pop(context);
+              setState(() {
+                addNoteCubit.addNote(note);
+                ShowNoteCubit().showNote();
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (_) {
+                  return NotesView();
+                }), (route) => false);
+              });
             },
           ),
           const SizedBox(

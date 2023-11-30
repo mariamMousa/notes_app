@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes_app/cubit/show_note/show_note_cubit.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
 class NoteItem extends StatefulWidget {
   const NoteItem({super.key});
 
   @override
-  State<NoteItem> createState() => _NoteItemState();
+  State<NoteItem> createState() => _MyWidgetState();
 }
 
-class _NoteItemState extends State<NoteItem> {
+class _MyWidgetState extends State<NoteItem> {
+  @override
+  void initState() {
+    super.initState();
+    ShowNoteCubit().showNote();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
