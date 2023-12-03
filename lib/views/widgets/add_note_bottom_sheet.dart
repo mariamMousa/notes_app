@@ -6,7 +6,6 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/notes_view.dart';
 import 'package:notes_app/views/widgets/custom_button.dart';
 import 'package:notes_app/views/widgets/custom_text_field.dart';
-import 'package:notes_app/views/widgets/notes_list_view.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
@@ -88,7 +87,7 @@ class _MyWidgetState extends State<AddNoteForm> {
                 ShowNoteCubit().showNote();
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (_) {
-                  return NotesView();
+                  return const NotesView();
                 }), (route) => false);
               });
             },
