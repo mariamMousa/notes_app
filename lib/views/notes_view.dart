@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/cubit/show_note/show_note_cubit.dart';
 import 'package:notes_app/views/widgets/add_note_bottom_sheet.dart';
 import 'package:notes_app/views/widgets/notes_view_body.dart';
 
@@ -11,7 +10,6 @@ class NotesView extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ShowNoteCubit().showNote();
           showModalBottomSheet(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16)),
