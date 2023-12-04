@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/cubit/show_note/show_note_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
+
 import 'package:notes_app/views/edit_note_view.dart';
 
 class NotesListView extends StatefulWidget {
@@ -28,7 +29,8 @@ class _NotesListViewState extends State<NotesListView> {
       bloc: showNoteCubit,
       builder: (context, state) {
         if (state is ShowNoteSuccess) {
-          final List<NoteModel> notes = state.notes; // Get the notes
+          final List<NoteModel> notes = state.notes;
+
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 25),
             child: ListView.builder(
