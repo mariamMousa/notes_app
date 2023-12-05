@@ -9,6 +9,7 @@ import 'package:notes_app/views/constants.dart';
 import 'package:notes_app/views/notes_view.dart';
 import 'package:notes_app/views/widgets/custom_button.dart';
 import 'package:notes_app/views/widgets/custom_text_field.dart';
+import 'package:uuid/uuid.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
@@ -77,6 +78,9 @@ class _MyWidgetState extends State<AddNoteForm> {
               // Assuming you have access to your AddNoteCubit instance
               final addNoteCubit = context.read<AddNoteCubit>();
 
+              //Generate Id for note
+              final String noteId  = const Uuid().v4(); // Generate a UUID
+
               // Generate a random index
               final int randomIndex = Random().nextInt(noteColor.length);
 
@@ -88,7 +92,8 @@ class _MyWidgetState extends State<AddNoteForm> {
                   title: title,
                   subTitle: subTitle,
                   date: '',
-                  color: randomColor.value);
+                  color: randomColor.value,
+                  noteId: noteId);
 
               // Call the addNote function
               setState(() {

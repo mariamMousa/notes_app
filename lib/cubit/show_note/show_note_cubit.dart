@@ -21,11 +21,13 @@ class ShowNoteCubit extends Cubit<ShowNoteState> {
           notes.map((note) => note.subTitle).toList();
       final List<String> noteDate = notes.map((note) => note.date).toList();
       final List<int> noteColor = notes.map((note) => note.color).toList();
+      final List<String> noteId = notes.map((note) => note.noteId).toList();
       emit(ShowNoteSuccess(notes));
       print('Note Titles: $noteTitles');
       print('Note Contents: $noteContents');
       print('Note Data: $noteDate');
       print('Note Color: $noteColor');
+      print('Note Id: $noteId');
       print("ammount is ${notesBox.length}");
     } catch (e) {
       ShowNoteFailer(e.toString());
